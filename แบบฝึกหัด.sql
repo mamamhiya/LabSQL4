@@ -1,5 +1,12 @@
 --การ Query ข้อมูลจากหลายตาราง (Join)
 -- 1.   จงแสดงข้อมูลรหัสใบสั่งซื้อ ชื่อบริษัทลูกค้า ชื่อและนามสกุลพนักงาน(ในคอลัมน์เดียวกัน) วันที่สั่งซื้อ ชื่อบริษัทขนส่งของ เมืองและประเทศที่ส่งของไป รวมถึงยอดเงินที่ต้องรับจากลูกค้าด้วย  
+SELECT o.OrderID,c.CompanyName,e.FirstName + ' ' + e.LastName as ชื่อพนักงาน,o.OrderDate,s.CompanyName,sp.City,sp.Country
+from orders o   JOIN customers c on o.CustomerID = c.CustomerID
+                JOIN employees e on o.EmployeeID = e.EmployeeID
+                JOIN shippers s on o.ShipVia = s.ShipperID
+                JOIN [Order Details] od on o.OrderID = od.OrderID
+                JOIN products p on od.ProductID = p.ProductID
+                JOIN Suppliers sp on p.SupplierID = sp.SupplierID
 
 -- 2.   จงแสดง ข้อมูล ชื่อบริษัทลูกค้า ชื่อผู้ติดต่อ เมือง ประเทศ จำนวนใบสั่งซื้อที่เกี่ยวข้องและ ยอดการสั่งซื้อทั้งหมดเลือกมาเฉพาะเดือน มกราคมถึง มีนาคม  1997
 -- 3.   จงแสดงชื่อเต็มของพนักงาน ตำแหน่ง เบอร์โทรศัพท์ จำนวนใบสั่งซื้อ รวมถึงยอดการสั่งซื้อทั้งหมดในเดือนพฤศจิกายน ธันวาคม 2539  โดยที่ใบสั่งซื้อนั้นถูกส่งไปประเทศ USA, Canada หรือ Mexico

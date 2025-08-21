@@ -22,3 +22,12 @@ on shippers.ShipperID = orders.ShipVia
 SELECT ProductID, ProductName, CompanyName,Country 
 from Products p, Suppliers s
 WHERE p.SupplierID = s.SupplierID
+
+SELECT ProductID, ProductName, CompanyName,Country 
+from Products p JOIN Suppliers s
+on p.SupplierID = s.SupplierID
+
+SELECT CompanyName,OrderID
+FROM Orders ,Shippers
+where Shippers.ShipperID = Orders.ShipVia
+and OrderID = 10275
